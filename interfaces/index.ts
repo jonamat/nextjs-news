@@ -1,10 +1,30 @@
-// You can include shared interfaces/types in a separate file
-// and then use them in any component by importing them. For
-// example, to import the interface below do:
-//
-// import { User } from 'path/to/interfaces';
+export enum REQ_STATUS {
+  LOADING,
+  ERROR,
+  SUCCESS,
+}
 
-export type User = {
-  id: number
-  name: string
+export interface Currency {
+  code: string;
+  symbol: string;
+  name: string;
+}
+
+export interface Language {
+  iso639_1: string;
+  iso639_2: string;
+  name: string;
+  nativeName: string;
+}
+
+export interface Country {
+  alpha2Code: string;
+  alpha3Code: string;
+  name: string;
+  capital: string;
+  subregion: string;
+  region: string;
+  population: number;
+  currencies: Array<Currency>;
+  languages: Array<Language>;
 }
