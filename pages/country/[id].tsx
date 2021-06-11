@@ -45,9 +45,9 @@ const CountryDetails: FC<Props> = ({ countryData }) => {
     <>
       <h1>{countryData.name}</h1>
       <div>Region: {countryData.region}</div>
-      <div>Subregion {countryData.subregion}</div>
-      <div>Capital {countryData.capital}</div>
-      <div>Population {countryData.population}</div>
+      <div>Subregion: {countryData.subregion}</div>
+      <div>Capital: {countryData.capital}</div>
+      <div>Population: {countryData.population}</div>
       <div>
         {(() => {
           switch (status) {
