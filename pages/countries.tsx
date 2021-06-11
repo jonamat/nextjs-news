@@ -23,8 +23,8 @@ const Countries: FC<Props> = ({ countries }) => {
   return (
     <>
       <h1>List of countries</h1>
-      {countries.map((country) => (
-        <div>
+      {countries.map((country, index) => (
+        <div key={index}>
           <Link href={`/country/${country.alpha3Code}`}>
             <a>{country.name}</a>
           </Link>
