@@ -28,3 +28,17 @@ export interface Country {
   currencies: Array<Currency>;
   languages: Array<Language>;
 }
+
+export interface Article {
+  source: {
+    id: string;
+    name: string;
+  };
+  title: string;
+  author: string;
+  description: string;
+  url: string;
+  urlToImage: string;
+  publishedAt: string;
+  content: string;
+}
