@@ -1,17 +1,20 @@
-import axios from "axios";
-import { GetStaticPaths, GetStaticProps } from "next";
 import { FC } from "react";
+import { GetStaticPaths, GetStaticProps } from "next";
+
 import { Country, REQ_STATUS } from "../../interfaces";
-import { useNews } from "../../queries/hooks";
+
+import {
+  getAllCountries,
+  getCountryInfoByCountryCode,
+} from "../../network/countries";
+import useNews from "../../hooks/useNews";
 
 interface Props {
   countryData: Country;
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const countries: Array<Country> = (
-    await axios.get("https://restcountries.eu/rest/v2/all")
-  ).data;
+  const countries = await getAllCountries();
 
   let paths = countries.map((country) => ({
     params: { id: country.alpha3Code },
@@ -24,12 +27,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
-  if (!params) throw new Error();
+  if (!params || typeof params.id !== "string")
+    throw new Error("params.id must be a string");
 
-  const countryData = (
-    await axios.get(`
-    https://restcountries.eu/rest/v2/alpha/${params.id}`)
-  ).data;
+  const countryData = await getCountryInfoByCountryCode(params.id);
 
   return {
     props: {
@@ -40,6 +41,8 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
 
 const CountryDetails: FC<Props> = ({ countryData }) => {
   const { data, status, error } = useNews(countryData.alpha2Code);
+
+  if (error) console.error(error);
 
   return (
     <>
@@ -53,18 +56,22 @@ const CountryDetails: FC<Props> = ({ countryData }) => {
           switch (status) {
             case REQ_STATUS.LOADING:
               return <div>Loading news...</div>;
+
             case REQ_STATUS.ERROR:
-              return <div>Error: {error}</div>;
-            default:
+              return <div>Error</div>;
+
+            case REQ_STATUS.SUCCESS:
               return (
                 <div>
-                  {data.articles.map((article, index) => (
-                    <div style={{padding: 10}} key={index}>
-                      <h4>Source: {article.source.name}</h4>
-                      <h3>{article.title}</h3>
-                      <p>{article.content}</p>
-                    </div>
-                  ))}
+                  {(data?.length &&
+                    data.map((article, index) => (
+                      <div style={{ padding: 10 }} key={index}>
+                        <h4>Source: {article.source.name}</h4>
+                        <h3>{article.title}</h3>
+                        <p>{article.content}</p>
+                      </div>
+                    ))) ||
+                    "I can't get the news for this country"}
                 </div>
               );
           }

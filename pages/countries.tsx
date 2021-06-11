@@ -1,16 +1,18 @@
-import axios from "axios";
-import { GetStaticProps } from "next";
 import { FC } from "react";
-import { Country } from "../interfaces";
+import { GetStaticProps } from "next";
 import Link from "next/link";
+
+import { Country } from "../interfaces";
+
+import { getAllCountries } from "../network/countries";
+import { COUNTRY_DETAILS_PAGE } from "../locations/pages";
 
 interface Props {
   countries: Array<Country>;
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const countries = (await axios.get("https://restcountries.eu/rest/v2/all"))
-    .data;
+  const countries = await getAllCountries();
 
   return {
     props: {
@@ -25,7 +27,7 @@ const Countries: FC<Props> = ({ countries }) => {
       <h1>List of countries</h1>
       {countries.map((country, index) => (
         <div key={index}>
-          <Link href={`/country/${country.alpha3Code}`}>
+          <Link href={COUNTRY_DETAILS_PAGE + country.alpha3Code}>
             <a>{country.name}</a>
           </Link>
         </div>

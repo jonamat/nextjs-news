@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { REQ_STATUS } from "../interfaces";
-import { getNews } from "./";
 
-export const useNews = (countryCode: string) => {
+import { REQ_STATUS } from "../interfaces";
+
+import { getNewsByCountryCode } from "../network/local";
+
+const QUERY_KEY = "news";
+
+const useNews = (countryCode: string) => {
   const [status, setStatus] = useState<REQ_STATUS>(REQ_STATUS.LOADING);
 
-  const { isLoading, error, data } = useQuery("news", () =>
-    getNews(countryCode)
+  const { isLoading, error, data } = useQuery(QUERY_KEY, () =>
+    getNewsByCountryCode(countryCode)
   );
 
   useEffect(() => {
@@ -22,3 +26,5 @@ export const useNews = (countryCode: string) => {
     data,
   };
 };
+
+export default useNews;
