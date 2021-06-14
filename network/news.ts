@@ -1,6 +1,13 @@
 import axios from "axios";
+
 import { Article } from "../interfaces";
 import { newsApiEndpoints } from "../network/config";
+
+interface NewsAPIResponse {
+  status: string;
+  totalResults: number;
+  articles: Array<Article>;
+}
 
 /**
  * Get headlines for a specific country
@@ -8,26 +15,14 @@ import { newsApiEndpoints } from "../network/config";
  * @returns Array of 20 Article objects
  */
 export const getNewsByCountryCode = async (alpha2code: string) => {
-  interface Response {
-    status: string;
-    totalResults: number;
-    articles: Array<Article>;
-  }
+  const { articles } = (
+    await axios.get<NewsAPIResponse>(newsApiEndpoints.getNewsByCountryCode, {
+      params: {
+        country: alpha2code,
+        apiKey: process.env.NEWSAPI_TOKEN,
+      },
+    })
+  ).data;
 
-  try {
-    const { articles } = (
-      await axios.get<Response>(newsApiEndpoints.getNewsByCountryCode, {
-        params: {
-          country: alpha2code,
-          apiKey: process.env.NEWSAPI_TOKEN,
-        },
-      })
-    ).data;
-
-    return articles;
-  } catch (_e) {
-
-    // Country is not covered by the service
-    return [];
-  }
+  return articles;
 };

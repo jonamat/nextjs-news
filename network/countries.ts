@@ -1,7 +1,6 @@
 import axios from "axios";
 
 import { Country } from "../interfaces";
-
 import { restCountriesEndpoints } from "./config";
 
 /**
