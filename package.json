@@ -5,8 +5,8 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint --ext js,jsx,ts,tsx",
-    "lint:fix": "eslint --ext js,jsx,ts,tsx --fix",
+    "lint": "eslint --ext js,jsx,ts,tsx .",
+    "lint:fix": "eslint --ext js,jsx,ts,tsx --fix .",
     "type-check": "tsc"
   },
   "dependencies": {
@@ -15,7 +15,6 @@
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "axios": "^0.21.1",
-    "chakra-ui-simple-autocomplete": "^0.7.0",
     "framer-motion": "^4",
     "next": "latest",
     "react": "^17.0.2",
