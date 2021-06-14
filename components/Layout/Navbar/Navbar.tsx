@@ -1,18 +1,10 @@
-import { FC, useState } from "react";
-import { useRouter } from "next/router";
-import {
-  Flex,
-  IconButton,
-  HStack,
-  Heading,
-  Tooltip,
-  Link,
-  Text,
-} from "@chakra-ui/react";
-import { ArrowBackIcon } from "@chakra-ui/icons";
+import { FC, useState } from 'react';
+import { useRouter } from 'next/router';
+import { Flex, IconButton, HStack, Heading, Tooltip, Link, Text } from '@chakra-ui/react';
+import { ArrowBackIcon } from '@chakra-ui/icons';
 
-import NavButtons from "./NavButtons";
-import Modal from "../Modal/Modal";
+import NavButtons from './NavButtons';
+import Modal from '../Modal/Modal';
 
 interface Props {
   showBack: boolean;
@@ -23,27 +15,14 @@ const Navbar: FC<Props> = ({ showBack }) => {
   const router = useRouter();
 
   const handleBack = () => router.back();
-  const handleInfo = () => setModalOpen(true)
+  const handleInfo = () => setModalOpen(true);
 
   return (
-    <Flex
-      justify="space-between"
-      position="fixed"
-      h="80px"
-      w="100%"
-      p={5}
-      shadow="sm"
-      bg="blue.100"
-    >
+    <Flex justify="space-between" position="fixed" h="80px" w="100%" p={5} shadow="sm" bg="blue.100">
       {showBack && (
         <HStack flexGrow={0} spacing={5}>
           <Tooltip hasArrow label="Go back">
-            <IconButton
-              colorScheme="blue"
-              icon={<ArrowBackIcon />}
-              onClick={handleBack}
-              aria-label="go back"
-            />
+            <IconButton colorScheme="blue" icon={<ArrowBackIcon />} onClick={handleBack} aria-label="go back" />
           </Tooltip>
         </HStack>
       )}
@@ -60,13 +39,10 @@ const Navbar: FC<Props> = ({ showBack }) => {
         open={modalOpen}
         handleClose={setModalOpen}
         isCentered
-        title={"NextJS demo app"}
+        title={'NextJS demo app'}
         content={
           <Text>
-            Repo at{" "}
-            <Link href="https://github.com/jonamat/nextjs-news">
-              https://github.com/jonamat/nextjs-news
-            </Link>
+            Repo at <Link href="https://github.com/jonamat/nextjs-news">https://github.com/jonamat/nextjs-news</Link>
           </Text>
         }
       />

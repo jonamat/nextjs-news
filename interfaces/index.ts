@@ -1,7 +1,7 @@
 export enum REQ_STATUS {
-  IDLE = 'idle', 
-  LOADING = 'loading', 
-  ERROR = 'error' ,
+  IDLE = 'idle',
+  LOADING = 'loading',
+  ERROR = 'error',
   SUCCESS = 'success',
 }
 

@@ -1,7 +1,7 @@
-import React, { FC } from "react";
-import Image from "next/image";
-import { Stack, Skeleton, Center, Box, Heading, Text } from "@chakra-ui/react";
-import { Article, REQ_STATUS } from "@/interfaces";
+import React, { FC } from 'react';
+import Image from 'next/image';
+import { Stack, Skeleton, Center, Box, Heading, Text } from '@chakra-ui/react';
+import { Article, REQ_STATUS } from '@/interfaces';
 
 interface Props {
   status: REQ_STATUS;
@@ -15,24 +15,9 @@ const ArticleList: FC<Props> = ({ articles, status, handleNewsClick }) => {
     case REQ_STATUS.LOADING:
       return (
         <Stack spacing={4}>
-          <Skeleton
-            height="10vh"
-            borderRadius={5}
-            startColor="blue.50"
-            endColor="blue.100"
-          />
-          <Skeleton
-            height="10vh"
-            borderRadius={5}
-            startColor="blue.50"
-            endColor="blue.100"
-          />
-          <Skeleton
-            height="10vh"
-            borderRadius={5}
-            startColor="blue.50"
-            endColor="blue.100"
-          />
+          <Skeleton height="10vh" borderRadius={5} startColor="blue.50" endColor="blue.100" />
+          <Skeleton height="10vh" borderRadius={5} startColor="blue.50" endColor="blue.100" />
+          <Skeleton height="10vh" borderRadius={5} startColor="blue.50" endColor="blue.100" />
         </Stack>
       );
 
@@ -55,8 +40,8 @@ const ArticleList: FC<Props> = ({ articles, status, handleNewsClick }) => {
                 bg="blue.50"
                 cursor="pointer"
                 borderRadius={7}
-                _dark={{ color: "blackAlpha.800" }}
-                _hover={{ bgColor: "blue.100" }}
+                _dark={{ color: 'blackAlpha.800' }}
+                _hover={{ bgColor: 'blue.100' }}
                 onClick={() => handleNewsClick(article)}
               >
                 <Heading size="sm" mb={2}>
@@ -71,7 +56,7 @@ const ArticleList: FC<Props> = ({ articles, status, handleNewsClick }) => {
           </Stack>
         );
       } else {
-        return <Text>I can't get the news for this country ☹</Text>;
+        return <Text>I can&apos;t get the news for this country ☹</Text>;
       }
   }
 };

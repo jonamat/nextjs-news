@@ -1,7 +1,7 @@
-import React, { FC } from "react";
-import { Flex, Box } from "@chakra-ui/react";
+import React, { FC } from 'react';
+import { Flex, Box } from '@chakra-ui/react';
 
-import Navbar from "../Navbar/Navbar";
+import Navbar from '../Navbar/Navbar';
 
 interface Props {
   showBack?: boolean;

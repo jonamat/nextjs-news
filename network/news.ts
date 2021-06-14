@@ -1,7 +1,7 @@
-import axios from "axios";
+import axios from 'axios';
 
-import { Article } from "../interfaces";
-import { newsApiEndpoints } from "../network/config";
+import { Article } from '../interfaces';
+import { newsApiEndpoints } from '../network/config';
 
 interface NewsAPIResponse {
   status: string;

@@ -6,8 +6,8 @@ import {
   ModalBody,
   ModalFooter,
   Modal as ChakraModal,
-} from "@chakra-ui/react";
-import React, { FC, ReactNode } from "react";
+} from '@chakra-ui/react';
+import React, { FC, ReactNode } from 'react';
 
 interface Props {
   open: boolean;
@@ -17,8 +17,8 @@ interface Props {
   buttons?: ReactNode;
   isCentered?: boolean;
   closeOnOverlayClick?: boolean;
-  scrollBehavior?: 'inside' | 'outside'
-  size?: "xs"| "sm"| "md"| "lg"| "xl"| "full"
+  scrollBehavior?: 'inside' | 'outside';
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'full';
 }
 
 const Modal: FC<Props> = ({
@@ -30,7 +30,7 @@ const Modal: FC<Props> = ({
   isCentered = false,
   closeOnOverlayClick = false,
   scrollBehavior = 'inside',
-  size = 'lg'
+  size = 'lg',
 }) => {
   return (
     <ChakraModal
@@ -46,7 +46,7 @@ const Modal: FC<Props> = ({
         <ModalHeader>{title}</ModalHeader>
         <ModalCloseButton />
         <ModalBody>{content}</ModalBody>
-        {!!buttons ? <ModalFooter>{buttons}</ModalFooter> : <br />}
+        {buttons ? <ModalFooter>{buttons}</ModalFooter> : <br />}
       </ModalContent>
     </ChakraModal>
   );
