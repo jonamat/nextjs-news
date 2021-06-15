@@ -20,14 +20,14 @@ const Navbar: FC<Props> = ({ showBack }) => {
   return (
     <Flex justify="space-between" position="fixed" h="80px" w="100%" p={5} shadow="sm" bg="blue.100">
       {showBack && (
-        <HStack flexGrow={0} spacing={5}>
+        <HStack flexGrow={0} spacing={5} mr={5}>
           <Tooltip hasArrow label="Go back">
             <IconButton colorScheme="blue" icon={<ArrowBackIcon />} onClick={handleBack} aria-label="go back" />
           </Tooltip>
         </HStack>
       )}
 
-      <Flex flexGrow={1} align="center" mx={5}>
+      <Flex flexGrow={1} align="center">
         <Heading size="lg" color="blackAlpha.800">
           World News
         </Heading>

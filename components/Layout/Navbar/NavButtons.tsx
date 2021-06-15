@@ -28,7 +28,7 @@ const NavButtons: FC<Props> = ({ handleInfo }) => {
   };
 
   return (
-    <HStack flexGrow={0} spacing={5}>
+    <HStack flexGrow={0} spacing={5} ml={5}>
       <Collapse
         in={selectOpen}
         animateOpacity
