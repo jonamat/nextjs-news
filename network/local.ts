@@ -1,6 +1,7 @@
-import axios from "axios";
-import { Article, Country } from "../interfaces";
-import { localApiEndpoints } from "./config";
+import axios from 'axios';
+
+import { Article, Country } from '../interfaces';
+import { localApiEndpoints } from './config';
 
 /**
  * Get a list of countries
@@ -16,9 +17,7 @@ export const getAllCountries = async () => {
  * @returns A Country object
  */
 export const getCountryInfoByCountryCode = async (alpha3code: string) => {
-  return (
-    await axios.get<Country>(localApiEndpoints.countries + `/${alpha3code}`)
-  ).data;
+  return (await axios.get<Country>(localApiEndpoints.countries + `/${alpha3code}`)).data;
 };
 
 /**

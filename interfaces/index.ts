@@ -1,7 +1,8 @@
 export enum REQ_STATUS {
-  LOADING,
-  ERROR,
-  SUCCESS,
+  IDLE = 'idle',
+  LOADING = 'loading',
+  ERROR = 'error',
+  SUCCESS = 'success',
 }
 
 export interface Currency {
